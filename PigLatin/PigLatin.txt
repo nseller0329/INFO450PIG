@@ -22,7 +22,7 @@ int main()
 void getinputs() // gets inputs from users
 {
 	string word;
-	cout << "Please enter a word." << endl;
+	cout << "Please enter a word or phrase." << endl;
 	cin >> word;
 
 		if (word.length () > 50 || isdigit (word[0]) )
