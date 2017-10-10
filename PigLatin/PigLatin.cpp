@@ -10,6 +10,7 @@
 using namespace std;
 void getinputs();
 int translateToPigLatin(string word);
+void goAgain();
 
 int main()
 {
@@ -23,13 +24,6 @@ void getinputs() // gets inputs from users
 	cout << "Please enter a word or phrase." << endl;
 	cin >> word;
 	cout << "You entered " << word << endl;
-	istringstream phrase(word);
-	while (phrase >> word)
-	{
-		getline(phrase, word, ' ');
-
-	}
-
 	translateToPigLatin(word);// send inputs to translator
 	
 
@@ -37,22 +31,20 @@ void getinputs() // gets inputs from users
 
 int translateToPigLatin(string word)
 {
-
-
 	string pigLatinAppend = "ay";
 
-	if (word.compare("the") || word.compare("The") || word.compare("and") || word.compare("And") || word.compare("but") || word.compare("But") || word.compare("for") || word.compare("For") || word.compare("nor") || word.compare("Nor") || word.compare("yet") || word.compare("Yet"))
+	if (word == "the" || word=="The" || word=="and" || word=="And" || word=="but" || word=="But" || word=="for" || word=="For" || word=="nor" || word=="Nor" || word=="yet" || word=="Yet")
 	{
 		cout << "Your word in Pig Latin is " << word << endl;
-	
+		
 	}
 
-	if (word.length() <= 2)
+	else if (word.length() <= 2)
 	{
 		cout << "Your word in Pig Latin is " << word << endl;
 	}
 
-	if (word.length() > 2)
+	else if (word.length() > 2)
 
 	{
 
@@ -69,8 +61,30 @@ int translateToPigLatin(string word)
 			cout << "Your word in pig latin is " << NewWord << endl;
 		}
 	}
-	
+	goAgain();
 	return 0;
 
 }
+void goAgain()
+{
+	char answer;
+	cout << "Would you like to do another one? Enter Y or N." << endl;
+	cin >> answer; 
 
+	if (answer == 'y' || answer == 'Y')
+	{
+		getinputs();
+	}
+	else if (answer == 'n' || answer == 'N')
+	{
+		exit;
+	}
+
+	else if (answer != 'y' || answer != 'Y' || answer != 'n' || answer != 'N')
+	{
+		cout << "Invalid Option." << endl;
+		goAgain();
+	}
+	
+
+}
