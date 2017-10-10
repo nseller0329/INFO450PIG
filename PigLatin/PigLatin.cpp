@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string> 
 #include <sstream>
+#include <cctype>
 #include "stdio.h"
 
 using namespace std;
@@ -23,10 +24,18 @@ void getinputs() // gets inputs from users
 	string word;
 	cout << "Please enter a word or phrase." << endl;
 	cin >> word;
-	cout << "You entered " << word << endl;
-	translateToPigLatin(word);// send inputs to translator
-	
 
+		if (word.length () > 50 || isdigit (word[0]) )
+		{
+			cout << "Invalid word, please enter a new word." << endl;
+			getinputs();
+		}
+		if (word.length ()<= 50)
+		{
+			cout << "You entered " << word << endl;
+			translateToPigLatin(word);// send inputs to translator
+		}
+	
 }
 
 int translateToPigLatin(string word)
@@ -82,7 +91,7 @@ void goAgain()
 
 	else if (answer != 'y' || answer != 'Y' || answer != 'n' || answer != 'N')
 	{
-		cout << "Invalid Option." << endl;
+		cout << " Invalid Option." << endl;
 		goAgain();
 	}
 	
