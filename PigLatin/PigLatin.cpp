@@ -9,17 +9,18 @@
 #include "stdio.h"
 
 using namespace std;
-void getinputs();
+int getinputs();
 int translateToPigLatin(string word);
 void goAgain();
 
 int main()
 {
 	getinputs(); // starts function to get inputs from user
+	goAgain(); //goes to function to ask user if they want to do another one
     return 0;
 }
 
-void getinputs() // gets inputs from users
+int getinputs() // gets inputs from users
 {
 	string word;
 	cout << "Please enter a word." << endl;
@@ -27,15 +28,16 @@ void getinputs() // gets inputs from users
 
 		if (word.length () > 47 || isdigit (word[0]) ) // checks character length and if there is a number as the first letter
 		{
-			cout << "Invalid word, please enter a new word." << endl;
-			getinputs(); // send the user to the beginning of the function to try again 
+			cout << "Invalid." << endl;
+			return -1;
+		 // send the user back to main since it has "failed" 
 		}
 		if (word.length ()<= 47) // if the word is ok it will get sent on 
 		{
 			cout << "You entered " << word << endl;
 			translateToPigLatin(word);// send inputs to translator
 		}
-	
+		return 0;
 }
 
 int translateToPigLatin(string word) //takes in the word from the getinputs funtion 
@@ -70,7 +72,7 @@ int translateToPigLatin(string word) //takes in the word from the getinputs funt
 			cout << "Your word in pig latin is " << NewWord << endl;
 		}
 	}
-	goAgain(); //goes to function to ask user if they want to do another one
+	
 	return 0;
 
 }
@@ -85,7 +87,7 @@ void goAgain()
 	}
 	else if (answer == 'n' || answer == 'N') // if the answer is n the user will exit the program 
 	{
-		exit;
+		return;
 	}
 	else if (answer != 'y' || answer != 'Y' || answer != 'n' || answer != 'N') // if the user enters a wrong choice they will get prompted again 
 	{
